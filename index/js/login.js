@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("jwtToken", result.token);
 
       if (result.passwordResetRequired) {
-        showNotification(
+        showAnimatedNotification(
           "É necessário redefinir sua senha. Você será redirecionado para alterar.",
-          3000
+          6000
         );
         setTimeout(() => {
           window.location.href = "/resetPassword/reset-password.html";
-        }, 3000);
+        }, 6000);
         return;
       }
 
@@ -52,31 +52,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-function showNotification(text, duration = 5000) {
-  const banner = document.createElement("div");
-  banner.classList.add("notification-banner");
 
-  const spanText = document.createElement("span");
-  spanText.textContent = text;
-
-  const closeBtn = document.createElement("button");
-  closeBtn.textContent = "×";
-
-  closeBtn.addEventListener("click", () => {
-    fadeOutAndRemove(banner);
-  });
-
-  banner.appendChild(spanText);
-  banner.appendChild(closeBtn);
-  document.body.appendChild(banner);
-
-  function fadeOutAndRemove(el) {
-    el.style.opacity = "0";
-    el.addEventListener("transitionend", () => el.remove());
-  }
-
-  setTimeout(() => {
-    fadeOutAndRemove(banner);
-  }, duration);
-}
 
