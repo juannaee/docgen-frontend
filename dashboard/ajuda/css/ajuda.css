@@ -1,0 +1,105 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 40px 20px;
+}
+
+/* Container geral */
+.container {
+  max-width: 800px;
+  margin: auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #444;
+}
+
+/* Estilo de cada pergunta */
+.faq-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.faq-item {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  background-color: #fafafa;
+}
+
+.faq-item:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Botão de pergunta */
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 15px 20px;
+  background-color: #fff;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.faq-question:hover {
+  background-color: #f0f0f0;
+}
+
+/* Resposta */
+.faq-answer {
+  padding: 0 20px 15px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* Quando visível */
+.faq-item.active .faq-answer {
+  max-height: 300px;
+  opacity: 1;
+}
+
+/* Botão de voltar */
+.back-button {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.back-button a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.back-button a:hover {
+  background-color: #45a049;
+}

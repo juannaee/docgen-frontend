@@ -1,11 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
   const usernameElem = document.getElementById("username");
   const logoutBtn = document.getElementById("logoutBtn");
+  const settingsLink = document.getElementById("settingsLink");
+  const configCard = document.getElementById("configCard");
 
   const token = localStorage.getItem("jwtToken");
+  
+  // Exemplo: pegando role salva no localStorage após login
+  const userRole = localStorage.getItem("userRole");
+
   if (!token) {
     window.location.href = "/index.html";
     return;
+  }
+   // Esconde se não for ADMIN
+  if (userRole !== "ADMIN") {
+    settingsLink.style.display = "none";
+    configCard.style.display = "none";
   }
 
   fetch("http://localhost:8080/users/me", {

@@ -15,9 +15,9 @@
       <nav class="menu">
         <a href="#" class="menu-item">🏠 Início</a>
         <a href="#" class="menu-item">👤 Perfil</a>
-        <a href="#" class="menu-item">⚙️ Configurações</a>
+        <a href="#" class="menu-item" id="settingsLink">⚙️ Configurações</a>
         <a href="#" class="menu-item">📄 Documentos</a>
-        <a href="#" class="menu-item">❓ Ajuda</a>
+        <a href="/dashboard/ajuda/ajuda.html" class="menu-item">❓ Ajuda</a>
         <button id="logoutBtn" class="menu-item logout">🚪 Sair</button>
       </nav>
     </aside>
@@ -30,9 +30,9 @@
 
       <section class="dashboard-actions">
         <div class="card">📄 <span>Documentos</span></div>
-        <div class="card">⚙️ <span>Configurações</span></div>
+        <div class="card" id="configCard" >⚙️ <span>Configurações</span></div>
         <div class="card">👤 <span>Perfil</span></div>
-        <div class="card">❓ <span>Ajuda</span></div>
+        <div class="card" onclick="location.href='/dashboard/ajuda/ajuda.html'">❓ <span>Ajuda</span></div>
       </section>
     </main>
   </div>

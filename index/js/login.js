@@ -44,7 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      localStorage.setItem("userRole", result.userRole); // 'ADMIN' ou 'USER'
       window.location.href = "/dashboard/dashboard.html";
+      
     } catch (error) {
       errorMessage.textContent =
         "Erro de conexão com o servidor. Tente novamente mais tarde.";
