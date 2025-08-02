@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      localStorage.setItem("userRole", result.userRole); // 'ADMIN' ou 'USER'
+      localStorage.setItem("username", result.username); // Salva o nome de usuário
       localStorage.setItem("jwtToken", result.token);
 
       if (result.passwordResetRequired) {
@@ -44,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      localStorage.setItem("userRole", result.userRole); // 'ADMIN' ou 'USER'
+   
       window.location.href = "/dashboard/dashboard.html";
       
     } catch (error) {

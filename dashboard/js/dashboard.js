@@ -5,38 +5,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const configCard = document.getElementById("configCard");
 
   const token = localStorage.getItem("jwtToken");
-  
-  // Exemplo: pegando role salva no localStorage após login
+  const username = localStorage.getItem("username");
   const userRole = localStorage.getItem("userRole");
 
   if (!token) {
     window.location.href = "/index.html";
     return;
   }
-   // Esconde se não for ADMIN
-  if (userRole !== "ADMIN") {
-    settingsLink.style.display = "none";
-    configCard.style.display = "none";
-  }
 
-  fetch("http://localhost:8080/users/me", {
-    headers: {
-      Authorization: "Bearer " + token,
-    },
-  })
-    .then(async (response) => {
-      if (!response.ok) throw new Error("Erro ao carregar usuário");
-      const data = await response.text();
-      const usuario = data.split("\n")[0].replace("Usuário logado: ", "").trim();
-      usernameElem.textContent = usuario || "Usuário";
-    })
-    .catch((error) => {
-      usernameElem.textContent = "Erro ao carregar";
-      console.error("Erro ao buscar usuário:", error);
-    });
+  // Mostra o nome do usuário salvo no login
+  usernameElem.textContent = username || "Usuário";
+
+  // Esconde configurações se não for ADMIN (proteção simples no front)
+  if (userRole !== "ADMIN") {
+    if (settingsLink) settingsLink.style.display = "none";
+    if (configCard) configCard.style.display = "none";
+  }
 
   logoutBtn.addEventListener("click", () => {
     localStorage.removeItem("jwtToken");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("username");
     window.location.href = "/index.html";
   });
 });
