@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`, // Envia o token no header
+          Authorization: `Bearer ${token}`, // Envia o token no header
         },
         body: JSON.stringify({
           newPassword: newPassword.value,
@@ -40,13 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      
       newPassword.value = "";
       confirmPassword.value = "";
 
-      //redirecionar após sucesso
-      window.location.href = "/index.html";
-
+      showSuccessPopupAndRedirect(5, "/index.html");
+      
     } catch (error) {
       errorMessage.textContent = "Erro ao atualizar senha. Tente novamente.";
       console.error("Erro no fetch reset password:", error);

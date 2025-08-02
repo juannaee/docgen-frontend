@@ -39,12 +39,12 @@ document.addEventListener("DOMContentLoaded", () => {
           3000
         );
         setTimeout(() => {
-          window.location.href = "/reset-password.html";
+          window.location.href = "/resetPassword/reset-password.html";
         }, 3000);
         return;
       }
 
-      window.location.href = "/dashboard.html";
+      window.location.href = "/dashboard/dashboard.html";
     } catch (error) {
       errorMessage.textContent =
         "Erro de conexão com o servidor. Tente novamente mais tarde.";
