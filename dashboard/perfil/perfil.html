@@ -1,24 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Perfil do Usuário</title>
-  <link rel="stylesheet" href="/dashboard/perfil/css/perfil.css" />
-</head>
-<body>
-  <div class="profile-container">
-    <button class="back-button" id="btnBack">← Voltar ao Dashboard</button>
-    <h1>👤 Meu Perfil</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="/dashboard/perfil/css/perfil.css" />
+    <link rel="stylesheet" href="/utilitarios/buttons.css" />
+  </head>
+  <body>
+    <div class="profile-container">
+      <h1>👤 Meu Perfil</h1>
 
-    <div class="profile-card">
-      <p><span class="icon">👤</span><strong>Nome:</strong> <span id="profileName"></span></p>
-      <p><span class="icon">📧</span><strong>Email:</strong> <span id="profileEmail"></span></p>
-      <p><span class="icon">📞</span><strong>Telefone:</strong> <span id="profilePhone"></span></p>
-      <p><span class="icon">⚙️</span><strong>Função:</strong> <span id="profileRole"></span></p>
-      <p><span class="icon">🔑</span><strong>Redefinir Senha:</strong> <span id="profileResetRequired"></span></p>
+      <div class="profile-card">
+        <p>
+          <span class="icon">👤</span><strong>Nome:</strong>
+          <span id="profileName"></span>
+        </p>
+        <p>
+          <span class="icon">📧</span><strong>Email:</strong>
+          <span id="profileEmail"></span>
+        </p>
+        <p>
+          <span class="icon">📞</span><strong>Telefone:</strong>
+          <span id="profilePhone"></span>
+        </p>
+        <p>
+          <span class="icon">⚙️</span><strong>Função:</strong>
+          <span id="profileRole"></span>
+        </p>
+        <p>
+          <span class="icon">🔑</span><strong>Redefinir Senha:</strong>
+          <span id="profileResetRequired"></span>
+        </p>
+      </div>
+
+      <button class="btn" id="btnBack">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          viewBox="0 0 24 24"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
     </div>
-  </div>
-  <script src="/dashboard/perfil/js/perfil.js"></script>
-</body>
+
+    <script src="/dashboard/perfil/js/perfil.js"></script>
+    <script src="/utilitarios/button-effects.js"></script>
+  </body>
 </html>

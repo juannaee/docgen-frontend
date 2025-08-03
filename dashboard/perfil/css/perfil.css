@@ -35,29 +35,6 @@ body {
   text-align: center;
 }
 
-.back-button {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background: transparent;
-  border: 1px solid var(--primary-light);
-  color: var(--primary-light);
-  padding: 0.3rem 0.8rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  user-select: none;
-  box-shadow: none;
-}
-
-.back-button:hover {
-  background-color: var(--primary-light);
-  color: var(--white);
-}
-
-
 h1 {
   font-size: 2.25rem;
   margin-bottom: 2rem;

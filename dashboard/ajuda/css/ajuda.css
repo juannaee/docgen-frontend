@@ -83,29 +83,4 @@ body {
   opacity: 1;
 }
 
-/* Botão de voltar */
-.back-button {
-  margin-top: 2rem;
-  text-align: center;
-}
 
-.back-button a {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: transparent;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-  border-radius: 0.5rem;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.back-button a:hover {
-  background-color: var(--primary);
-  color: #3730a3;
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.5);
-}
