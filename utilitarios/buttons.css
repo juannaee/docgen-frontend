@@ -58,6 +58,48 @@
   transform: translateX(6px) rotate(10deg);
 }
 
+
+/* Botão de editar - variação do .btn principal */
+.btn-edit {
+  background: linear-gradient(270deg, #3b82f6, #2563eb, #1d4ed8); /* Azul vibrante */
+  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.5);
+  padding: 8px 14px;
+}
+
+.btn-edit:hover {
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.7);
+}
+
+.btn-edit:active {
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
+}
+
+/* Ícone de lápis (edit) para o botão */
+.btn-edit svg {
+  stroke: white;
+  transition: transform 0.3s ease;
+}
+
+.btn-edit:hover svg {
+  transform: rotate(15deg) scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Ripple effect */
 
 .ripple {
