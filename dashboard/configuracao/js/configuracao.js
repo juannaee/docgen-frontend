@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("editModal");
   const form = document.getElementById("editUserForm");
   const closeModalBtn = document.getElementById("closeModal");
+  const cancelButton = document.getElementById("cancelButton");
+  cancelButton.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
 
   // Requisição para buscar todos os usuários
   fetch("http://localhost:8080/users", {

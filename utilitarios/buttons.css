@@ -85,17 +85,53 @@
 }
 
 
+/* Botão base já existente (.btn) */
 
+.btn-save {
+  background: linear-gradient(270deg, #16a34a, #22c55e, #15803d);
+  box-shadow: 0 6px 12px rgba(21, 128, 61, 0.5);
+}
 
+.btn-save:hover {
+  background: linear-gradient(270deg, #15803d, #22c55e, #16a34a);
+  box-shadow: 0 10px 20px rgba(21, 128, 61, 0.7);
+}
 
+.btn-save:active {
+  box-shadow: 0 4px 8px rgba(21, 128, 61, 0.4);
+}
 
+.btn-cancel {
+  background: linear-gradient(270deg, #dc2626, #ef4444, #b91c1c);
+  box-shadow: 0 6px 12px rgba(185, 28, 28, 0.5);
+}
 
+.btn-cancel:hover {
+  background: linear-gradient(270deg, #b91c1c, #ef4444, #dc2626);
+  box-shadow: 0 10px 20px rgba(185, 28, 28, 0.7);
+}
 
+.btn-cancel:active {
+  box-shadow: 0 4px 8px rgba(185, 28, 28, 0.4);
+}
 
+/* Ícones para salvar e cancelar */
 
+.btn-save svg,
+.btn-cancel svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
 
+.btn-save:hover svg {
+  transform: translateX(4px) rotate(10deg);
+}
 
-
+.btn-cancel:hover svg {
+  transform: translateX(-4px) rotate(-10deg);
+}
 
 
 

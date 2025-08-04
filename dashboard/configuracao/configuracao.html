@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Configurações</title>
-  <link rel="stylesheet" href="/dashboard/configuracao/css/configuracao.css" />
-  <link rel="stylesheet" href="/utilitarios/buttons.css" />
-</head>
-<body>
-  <header class="header">
-    <h1>Configurações</h1>
-       <button class="btn" id="btnBack">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Configurações</title>
+    <link
+      rel="stylesheet"
+      href="/dashboard/configuracao/css/configuracao.css"
+    />
+    <link rel="stylesheet" href="/utilitarios/buttons.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Configurações</h1>
+      <button class="btn" id="btnBack">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -23,44 +26,67 @@
           <polyline points="15 18 9 12 15 6" />
         </svg>
       </button>
-  </header>
+    </header>
 
-  <main>
-    <div id="userCardsContainer" class="user-cards"></div>
-  </main>
+    <main>
+      <div id="userCardsContainer" class="user-cards"></div>
+    </main>
 
+    <script src="/dashboard/configuracao/js/configuracao.js"></script>
+    <script src="/utilitarios/button-effects.js"></script>
 
-  <script src="/dashboard/configuracao/js/configuracao.js"></script>
-  <script src="/utilitarios/button-effects.js"></script>
+    <!-- Modal de Edição -->
+    <div id="editModal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Editar Usuário</h2>
+        <form id="editUserForm">
+          <input type="hidden" id="editUserId" />
 
+          <label>Nome</label>
+          <input type="text" id="editName" required />
 
+          <label>Telefone</label>
+          <input type="text" id="editPhone" required />
 
-  <!-- Modal de Edição -->
-<div id="editModal" class="modal hidden">
-  <div class="modal-content">
-    <h2>Editar Usuário</h2>
-    <form id="editUserForm">
-      <input type="hidden" id="editUserId" />
+          <label>Email</label>
+          <input type="text" id="editEmail" disabled />
 
-      <label>Nome</label>
-      <input type="text" id="editName" required />
+          <label>Função</label>
+          <input type="text" id="editRole" disabled />
 
-      <label>Telefone</label>
-      <input type="text" id="editPhone" required />
-
-      <label>Email</label>
-      <input type="text" id="editEmail" disabled />
-
-      <label>Função</label>
-      <input type="text" id="editRole" disabled />
-
-      <div class="modal-buttons">
-        <button type="submit" class="btn">Salvar</button>
-        <button type="button" id="closeModal" class="btn red">Cancelar</button>
+          <div class="modal-buttons">
+            <button type="submit" class="btn btn-save">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                viewBox="0 0 24 24"
+                class="icon"
+              >
+                <path d="M5 13l4 4L19 7" />
+              </svg>
+            </button>
+            <button type="button" id="cancelButton" class="btn btn-cancel">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                viewBox="0 0 24 24"
+                class="icon"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
-  </div>
-</div>
-
-</body>
+    </div>
+  </body>
 </html>
