@@ -1,156 +1,139 @@
-/* Botão estiloso com animação e ripple */
+/* =========================
+   Botões — base e variantes
+   ========================= */
 
-.btn {
+:root{
+  --btn-fg: #fff;
+  --btn-shadow: 0 6px 12px rgba(0,0,0,.25);
+  --ripple-color: rgba(255,255,255,.35);
+  --ring: 0 0 0 2px rgba(99,102,241,.35);
+}
+
+@media (prefers-color-scheme: light){
+  :root{
+    --ripple-color: rgba(255,255,255,.5);
+    --ring: 0 0 0 2px rgba(79,70,229,.35);
+  }
+}
+
+.btn{
+  --bg: linear-gradient(270deg, #6366f1, #4f46e5, #4338ca);
+  --shadow: 0 6px 12px rgba(79, 70, 229, .45);
+
   position: relative;
   overflow: hidden;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-  margin-top:  15px;
-  padding: 10px 10px;
-  border-radius: 14px;
-  border: none;
-  cursor: pointer;
-  color: white;
-  background: linear-gradient(270deg, #6366f1, #4f46e5, #4338ca);
-  background-size: 600% 600%;
-  animation: gradientShift 10s ease infinite;
-  box-shadow: 0 6px 12px rgba(79, 70, 229, 0.5);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
+
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 14px;
+  cursor: pointer;
+
+  color: var(--btn-fg);
+  background: var(--bg);
+  background-size: 600% 600%;
+  animation: gradientShift 10s ease infinite;
+
+  font: 700 1.05rem/1 ui-sans-serif, system-ui, "Segoe UI", Inter, Roboto, Arial;
   user-select: none;
-  transition: box-shadow 0.3s ease, transform 0.1s ease;
+  box-shadow: var(--shadow);
+  transition: box-shadow .25s ease, transform .1s ease, opacity .2s ease;
 }
 
-.btn:hover {
-  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.7);
-  transform: translateY(-3px);
+.btn:hover{ box-shadow: 0 10px 20px rgba(79,70,229,.6); transform: translateY(-2px) }
+.btn:active{ transform: translateY(1px); box-shadow: 0 4px 10px rgba(79,70,229,.4) }
+.btn:focus-visible{ outline: none; box-shadow: var(--shadow), var(--ring) }
+.btn[disabled], .btn:disabled{ opacity:.6; cursor:not-allowed; transform:none; box-shadow: none }
+
+/* Ícone dentro do botão */
+.btn svg{ width:20px; height:20px; stroke: currentColor; transition: transform .25s ease }
+.btn:hover svg{ transform: translateX(6px) rotate(8deg) }
+
+/* Variantes */
+.btn-edit{
+  --bg: linear-gradient(270deg, #3b82f6, #2563eb, #1d4ed8);
+  --shadow: 0 6px 12px rgba(37,99,235,.45);
+}
+.btn-save{
+  --bg: linear-gradient(270deg, #16a34a, #22c55e, #15803d);
+  --shadow: 0 6px 12px rgba(21,128,61,.45);
+}
+.btn-cancel{
+  --bg: linear-gradient(270deg, #dc2626, #ef4444, #b91c1c);
+  --shadow: 0 6px 12px rgba(185,28,28,.45);
 }
 
-.btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.4);
+/* Outline / Ghost / Icon-only opcionais */
+.btn-outline{
+  --btn-fg:#4f46e5;
+  background: transparent;
+  border:1.5px solid currentColor;
+  color: var(--btn-fg);
+  box-shadow:none;
+}
+.btn-outline:hover{ background: rgba(79,70,229,.08) }
+
+.btn-ghost{
+  background: transparent;
+  box-shadow:none;
+}
+.btn-ghost:hover{ background: rgba(255,255,255,.06) }
+
+.btn-icon{
+  padding: 10px;
+  width: 42px; height: 42px;
+  border-radius: 12px;
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+/* Tamanhos */
+.btn-sm{ padding:8px 10px; border-radius:12px; font-size:.95rem }
+.btn-lg{ padding:12px 18px; border-radius:16px; font-size:1.1rem }
+
+/* Loading state opcional */
+.btn[data-loading="true"]{ cursor: progress; pointer-events: none; opacity:.85 }
+.btn .spinner{
+  width:18px; height:18px; border:2px solid rgba(255,255,255,.35); border-top-color:#fff; border-radius:50%;
+  display:none; animation: spin .8s linear infinite;
 }
+.btn[data-loading="true"] .spinner{ display:inline-block }
 
-/* Ícone */
-
-.btn svg {
-  width: 20px;
-  height: 20px;
-  stroke: currentColor;
-  transition: transform 0.3s ease;
-}
-
-.btn:hover svg {
-  transform: translateX(6px) rotate(10deg);
-}
-
-
-/* Botão de editar - variação do .btn principal */
-.btn-edit {
-  background: linear-gradient(270deg, #3b82f6, #2563eb, #1d4ed8); /* Azul vibrante */
-  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.5);
-  padding: 8px 14px;
-}
-
-.btn-edit:hover {
-  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.7);
-}
-
-.btn-edit:active {
-  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
-}
-
-/* Ícone de lápis (edit) para o botão */
-.btn-edit svg {
-  stroke: white;
-  transition: transform 0.3s ease;
-}
-
-.btn-edit:hover svg {
-  transform: rotate(15deg) scale(1.1);
-}
-
-
-/* Botão base já existente (.btn) */
-
-.btn-save {
-  background: linear-gradient(270deg, #16a34a, #22c55e, #15803d);
-  box-shadow: 0 6px 12px rgba(21, 128, 61, 0.5);
-}
-
-.btn-save:hover {
-  background: linear-gradient(270deg, #15803d, #22c55e, #16a34a);
-  box-shadow: 0 10px 20px rgba(21, 128, 61, 0.7);
-}
-
-.btn-save:active {
-  box-shadow: 0 4px 8px rgba(21, 128, 61, 0.4);
-}
-
-.btn-cancel {
-  background: linear-gradient(270deg, #dc2626, #ef4444, #b91c1c);
-  box-shadow: 0 6px 12px rgba(185, 28, 28, 0.5);
-}
-
-.btn-cancel:hover {
-  background: linear-gradient(270deg, #b91c1c, #ef4444, #dc2626);
-  box-shadow: 0 10px 20px rgba(185, 28, 28, 0.7);
-}
-
-.btn-cancel:active {
-  box-shadow: 0 4px 8px rgba(185, 28, 28, 0.4);
-}
-
-/* Ícones para salvar e cancelar */
-
-.btn-save svg,
-.btn-cancel svg {
-  width: 20px;
-  height: 20px;
-  stroke: currentColor;
-  transition: transform 0.3s ease;
-}
-
-.btn-save:hover svg {
-  transform: translateX(4px) rotate(10deg);
-}
-
-.btn-cancel:hover svg {
-  transform: translateX(-4px) rotate(-10deg);
-}
-
-
-
-
-/* Ripple effect */
-
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: rippleAnim 600ms linear;
-  background-color: rgba(255, 255, 255, 0.4);
+/* Ripple element (injetado via JS) */
+.btn .ripple{
+  position: absolute; inset: 0 auto auto 0;
+  border-radius: inherit;
   pointer-events: none;
-  z-index: 10;
+  transform: translate(var(--rx,0), var(--ry,0)) scale(0);
+  width: var(--rs, 0px); height: var(--rs, 0px);
+  background: var(--ripple-color);
+  opacity:.9;
+  animation: rippleAnim 600ms ease-out;
+  z-index: 1;
 }
 
-@keyframes rippleAnim {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
+/* Keyframes */
+@keyframes gradientShift{
+  0%{ background-position: 0% 50% }
+  50%{ background-position: 100% 50% }
+  100%{ background-position: 0% 50% }
+}
+@keyframes rippleAnim{
+  to { transform: translate(var(--rx,0), var(--ry,0)) scale(1); opacity: 0 }
+}
+@keyframes spin{ to{ transform: rotate(360deg) } }
+
+/* Close (para modais etc.) */
+.btn-close{
+  position:absolute; top:10px; right:10px;
+  background: transparent; border:0; color:inherit; font-size:1.4rem; cursor:pointer;
+}
+.btn-close:hover{ filter: brightness(1.2) }
+
+/* Respeita preferências do usuário */
+@media (prefers-reduced-motion: reduce){
+  .btn{ animation: none }
+  .btn:hover svg{ transform:none }
+  .btn .ripple{ display:none }
 }

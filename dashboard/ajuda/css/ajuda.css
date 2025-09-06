@@ -1,86 +1,127 @@
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ===== Reset básico ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root{
+  --bg:#0b0f1a; --card:#0f1629; --text:#e7edf7; --muted:#a3b1c6;
+  --brand:#6366f1; --ring: 0 0 0 1px rgba(99,102,241,.18), 0 10px 30px rgba(2,6,23,.35);
+  --radius: 16px;
+}
+@media (prefers-color-scheme: light){
+  :root{ --bg:#f6f7fb; --card:#ffffff; --text:#0f172a; --muted:#6b7280;
+         --ring: 0 0 0 1px rgba(99,102,241,.14), 0 10px 26px rgba(17,24,39,.10); }
+}
+html,body{height:100%}
+body{
+  font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Inter, Arial;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 700px at 10% -10%, rgba(124,58,237,.20), transparent 60%),
+    radial-gradient(900px 500px at 90% 0%, rgba(99,102,241,.18), transparent 60%),
+    var(--bg);
+  padding: 32px 16px;
 }
 
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  padding: 40px 20px;
+/* ===== Container ===== */
+.container{
+  max-width: 900px; margin: 0 auto;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 24px; padding: 28px;
+  box-shadow: var(--ring);
+}
+@media (prefers-color-scheme: light){
+  .container{ background:#fff; border:1px solid #eef2ff; }
 }
 
-/* Container geral */
-.container {
-  max-width: 800px;
-  margin: auto;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+/* ===== Título / topo ===== */
+.header-help{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px;
+}
+.container h1{
+  font-size: clamp(22px, 3.5vw, 28px);
+  letter-spacing:.2px;
+}
+.subtitle{
+  color: var(--muted); font-size: 14px; margin-bottom: 18px;
+}
+.searchbar{
+  width:min(360px, 60vw);
+  position: relative;
+}
+.searchbar input{
+  width:100%; padding: 12px 14px 12px 38px; border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06); color: var(--text); outline: none;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+@media (prefers-color-scheme: light){
+  .searchbar input{ background:#fff; border:1px solid #e5e7eb; }
+}
+.searchbar input:focus{ border-color: rgba(99,102,241,.45); box-shadow: var(--ring); }
+.searchbar .icon{
+  position:absolute; left:12px; top:50%; transform:translateY(-50%); width:16px; height:16px; opacity:.7;
 }
 
-/* Título */
-.container h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 2rem;
-  color: #444;
+/* ===== Lista de FAQs ===== */
+.faq-section{ display:flex; flex-direction:column; gap:12px; margin-top: 10px; }
+
+.faq-item{
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 14px; overflow: hidden;
+  transition: border-color .2s ease, transform .2s ease;
+}
+@media (prefers-color-scheme: light){
+  .faq-item{ background:#fff; border:1px solid #e5e7eb; }
+}
+.faq-item:hover{ transform: translateY(-2px); border-color: rgba(99,102,241,.35); }
+
+.faq-question{
+  width:100%; display:flex; align-items:center; gap:10px; justify-content:space-between;
+  padding: 14px 16px; background: transparent; border: none; cursor: pointer;
+  color: var(--text); font-weight: 700; font-size: 1rem;
+}
+.faq-question .q-left{ display:flex; align-items:center; gap:10px; }
+.badge{
+  font-size: 11px; padding: 2px 8px; border-radius: 999px;
+  border:1px solid rgba(255,255,255,.14); color:#dbeafe;
+  background: linear-gradient(180deg, rgba(99,102,241,.28), rgba(124,58,237,.22));
+}
+.chevron{
+  transition: transform .25s ease; opacity:.85;
+}
+.faq-item.active .chevron{ transform: rotate(180deg); }
+
+.faq-answer{
+  padding: 0 16px; max-height: 0; overflow: hidden; opacity: 0;
+  color: var(--muted); font-size: .97rem; line-height: 1.6;
+  transition: max-height .28s ease, opacity .28s ease, padding .28s ease;
+}
+.faq-item.active .faq-answer{
+  padding: 0 16px 16px; opacity: 1;
 }
 
-/* Estilo de cada pergunta */
-.faq-section {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+/* ===== Estado vazio ===== */
+.empty{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:12px; color: var(--muted); padding: 48px 16px; text-align:center;
+  border: 2px dashed rgba(255,255,255,.10); border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  max-width: 420px; margin: 32px auto 8px;
 }
-
-.faq-item {
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: box-shadow 0.3s ease;
-  background-color: #fafafa;
+@media (prefers-color-scheme: light){
+  .empty{ border-color:#e5e7eb; background:#fafafa; }
 }
+.empty svg{ width:48px; height:48px; stroke: currentColor; fill:none; stroke-width:1.8; opacity:.8; }
+.hidden{ display:none !important; }
 
-.faq-item:hover {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+/* ===== Botão voltar ===== */
+#btnBack{
+  margin-top: 18px; border-radius: 12px; border:1px solid rgba(255,255,255,.12);
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  color: var(--text); padding: 10px 12px; cursor: pointer;
 }
-
-/* Botão de pergunta */
-.faq-question {
-  width: 100%;
-  text-align: left;
-  padding: 15px 20px;
-  background-color: #fff;
-  border: none;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+@media (prefers-color-scheme: light){
+  #btnBack{ background:#fff; border:1px solid #e5e7eb; }
 }
-
-.faq-question:hover {
-  background-color: #f0f0f0;
-}
-
-/* Resposta */
-.faq-answer {
-  padding: 0 20px 15px;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  color: #555;
-  font-size: 0.95rem;
-}
-
-/* Quando visível */
-.faq-item.active .faq-answer {
-  max-height: 300px;
-  opacity: 1;
-}
-
-
+#btnBack svg{ width:18px; height:18px; vertical-align:middle; }
+#btnBack:focus-visible{ outline:none; box-shadow: var(--ring); }

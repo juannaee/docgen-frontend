@@ -1,91 +1,48 @@
-function showSuccessPopupAndRedirect(seconds = 5, redirectUrl = "/index.html") {
-  if (!document.getElementById("popup-animations-style")) {
-    const style = document.createElement("style");
-    style.id = "popup-animations-style";
-    style.textContent = `
-    @keyframes pop {
-      0% {
-        transform: scale(0);
-        opacity: 0;
-      }
-      80% {
-        transform: scale(1.1);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-  `;
-    document.head.appendChild(style);
-  }
+function showSuccessPopupAndRedirect(a = 5, b = "/index.html") {
+  const opts = typeof a === "object"
+    ? { seconds: 5, redirectUrl: "/index.html", message: "Senha alterada com sucesso!", type: "success", ...a }
+    : { seconds: a ?? 5, redirectUrl: b ?? "/index.html", message: "Senha alterada com sucesso!", type: "success" };
 
-  const popupContainer = document.createElement("div");
-  popupContainer.style.position = "fixed";
-  popupContainer.style.top = "20px";
-  popupContainer.style.right = "20px"; // mudou de center para canto direito
-  popupContainer.style.backgroundColor = "rgba(75, 181, 67, 0.85)"; // verde suave e semi-transparente
-  popupContainer.style.color = "#fff";
-  popupContainer.style.padding = "0.8rem 1.2rem"; // menor padding
-  popupContainer.style.borderRadius = "10px";
-  popupContainer.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)"; // sombra mais leve
-  popupContainer.style.fontSize = "0.9rem"; // fonte menor
-  popupContainer.style.zIndex = "1000";
-  popupContainer.style.fontFamily = "Segoe UI, sans-serif";
-  popupContainer.style.display = "flex";
-  popupContainer.style.alignItems = "center";
-  popupContainer.style.gap = "10px";
-  popupContainer.style.minWidth = "250px";
-  popupContainer.style.opacity = "0";
-  popupContainer.style.transition = "opacity 0.4s ease, transform 0.4s ease";
-  popupContainer.style.transform = "translateY(-15px)";
+  // ---- cria popup básico
+  const el = document.createElement("div");
+  el.style.position = "fixed";
+  el.style.top = "20px";
+  el.style.right = "20px";
+  el.style.background = "rgba(34,197,94,.95)";
+  el.style.color = "#fff";
+  el.style.padding = "12px 16px";
+  el.style.borderRadius = "10px";
+  el.style.fontFamily = "Segoe UI, sans-serif";
+  el.style.boxShadow = "0 4px 12px rgba(0,0,0,.2)";
+  el.style.zIndex = "9999";
 
-  // Ícone SVG menor e alinhado horizontalmente
-  const icon = document.createElement("div");
-  icon.innerHTML = `
-  <svg class="check-icon" width="32" height="32" viewBox="0 0 24 24" fill="none"
-       stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="10" stroke-opacity="0.3" />
-    <path d="M16 8l-5.5 6L8 11" />
-  </svg>
-`;
-  icon.style.animation = "pop 0.4s ease-out";
+  const msg = document.createElement("div");
+  msg.textContent = `${opts.message} Redirecionando em ${opts.seconds}s...`;
+  el.appendChild(msg);
 
-  const message = document.createElement("div");
-  message.textContent = `Senha alterada com sucesso! Redirecionando em ${seconds}s...`;
+  const progress = document.createElement("div");
+  progress.style.height = "3px";
+  progress.style.background = "rgba(255,255,255,0.7)";
+  progress.style.marginTop = "6px";
+  progress.style.width = "0%";
+  progress.style.transition = `width ${opts.seconds}s linear`;
+  el.appendChild(progress);
 
-  // Barra de progresso discreta e fina
-  const progressBar = document.createElement("div");
-  progressBar.style.position = "absolute";
-  progressBar.style.bottom = "0";
-  progressBar.style.left = "0";
-  progressBar.style.height = "3px"; // mais fina
-  progressBar.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
-  progressBar.style.width = "0%";
-  progressBar.style.transition = `width ${seconds}s linear`;
+  document.body.appendChild(el);
 
-  popupContainer.appendChild(icon);
-  popupContainer.appendChild(message);
-  popupContainer.appendChild(progressBar);
+  // força animação da barra
+  requestAnimationFrame(() => progress.style.width = "100%");
 
-  document.body.appendChild(popupContainer);
-
-  // Força reflow para animar entrada
-  setTimeout(() => {
-    popupContainer.style.opacity = "1";
-    popupContainer.style.transform = "translateY(0)";
-    progressBar.style.width = "100%";
-  }, 10);
-
+  // contador de segundos
+  let remaining = opts.seconds;
   const interval = setInterval(() => {
-    seconds--;
-    if (seconds > 0) {
-      message.textContent = `Senha alterada com sucesso! Redirecionando em ${seconds}s...`;
+    remaining--;
+    if (remaining > 0) {
+      msg.textContent = `${opts.message} Redirecionando em ${remaining}s...`;
     } else {
       clearInterval(interval);
-      popupContainer.remove();
-      window.location.href = redirectUrl;
+      el.remove();
+      if (opts.redirectUrl) window.location.href = opts.redirectUrl;
     }
   }, 1000);
 }

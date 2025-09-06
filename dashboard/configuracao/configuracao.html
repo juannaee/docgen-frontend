@@ -4,82 +4,78 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Configurações</title>
-    <link
-      rel="stylesheet"
-      href="/dashboard/configuracao/css/configuracao.css"
-    />
+    <link rel="stylesheet" href="/dashboard/configuracao/css/configuracao.css" />
     <link rel="stylesheet" href="/utilitarios/buttons.css" />
   </head>
   <body>
     <header class="header">
       <h1>Configurações</h1>
-      <button class="btn" id="btnBack">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          viewBox="0 0 24 24"
-        >
+      <button class="btn" id="btnBack" title="Voltar">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <polyline points="15 18 9 12 15 6" />
         </svg>
       </button>
     </header>
 
     <main>
-      <div id="userCardsContainer" class="user-cards"></div>
+      <section class="toolbar">
+        <div class="toolbar-left">
+          <h2 class="section-title">Usuários</h2>
+          <span id="userCount" class="pill">0</span>
+        </div>
+        <div class="toolbar-right">
+          <input id="searchInput" type="search" placeholder="Buscar por nome ou e-mail…" aria-label="Buscar"/>
+          <button id="openCreate" class="btn btn-new" type="button" title="Novo usuário">
+            <!-- ícone plus -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="none" stroke="currentColor" stroke-width="2" d="M12 5v14M5 12h14"/>
+            </svg>
+            Novo usuário
+          </button>
+        </div>
+      </section>
+
+      <div id="userCardsContainer" class="user-cards">
+        <!-- skeletons -->
+        <div class="user-card skeleton"></div>
+        <div class="user-card skeleton"></div>
+        <div class="user-card skeleton"></div>
+      </div>
+
+      <div id="emptyState" class="empty hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M3 7l9-5 9 5v10l-9 5-9-5V7z" />
+          <path d="M3 7l9 5 9-5" />
+        </svg>
+        <p>Nenhum usuário encontrado</p>
+      </div>
     </main>
 
-    <script src="/dashboard/configuracao/js/configuracao.js"></script>
-    <script src="/utilitarios/button-effects.js"></script>
-
-    <!-- Modal de Edição -->
+    <!-- Modal EDITAR (sem X no topo) -->
     <div id="editModal" class="modal hidden">
       <div class="modal-content">
         <h2>Editar Usuário</h2>
-        <form id="editUserForm">
+        <form id="editUserForm" class="form-grid">
           <input type="hidden" id="editUserId" />
-
           <label>Nome</label>
-          <input type="text" id="editName" required />
-
+          <input type="text" id="editName" required maxlength="25" />
           <label>Telefone</label>
           <input type="text" id="editPhone" required />
-
           <label>Email</label>
           <input type="text" id="editEmail" disabled />
-
           <label>Função</label>
           <input type="text" id="editRole" disabled />
-
           <div class="modal-buttons">
-            <button type="submit" class="btn btn-save">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                viewBox="0 0 24 24"
-                class="icon"
-              >
-                <path d="M5 13l4 4L19 7" />
-              </svg>
+            <button type="submit" class="btn btn-save" title="Salvar">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                   viewBox="0 0 24 24" class="icon"><path d="M5 13l4 4L19 7"/></svg>
             </button>
-            <button type="button" id="cancelButton" class="btn btn-cancel">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                viewBox="0 0 24 24"
-                class="icon"
-              >
+            <button type="button" data-close="#editModal" class="btn btn-cancel" title="Cancelar">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                   viewBox="0 0 24 24" class="icon">
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
@@ -88,5 +84,42 @@
         </form>
       </div>
     </div>
+
+    <!-- Modal CRIAR -->
+    <div id="createModal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Novo Usuário</h2>
+
+        <form id="createUserForm" class="form-grid" novalidate>
+          <label for="cName">Nome</label>
+          <input id="cName" name="name" type="text" required maxlength="50" placeholder="Fulano de Tal"/>
+
+          <label for="cEmail">E-mail</label>
+          <input id="cEmail" name="email" type="email" required placeholder="email@dominio.com"/>
+
+          <label for="cBirth">Nascimento</label>
+          <!-- type="date" para UX, converto para dd/MM/yyyy no POST -->
+          <input id="cBirth" name="birth" type="date" required />
+
+          <label for="cPhone">Telefone</label>
+          <input id="cPhone" name="phone" type="text" inputmode="numeric" placeholder="(99) 99999-9999" required />
+
+          <label for="cCpf">CPF</label>
+          <input id="cCpf" name="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00" required />
+
+          <div id="cErrors" class="field-error hidden"></div>
+
+          <div class="modal-buttons">
+            <button type="submit" id="cSubmit" class="btn btn-save">Criar</button>
+            <button type="button" data-close="#createModal" class="btn btn-cancel">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="/dashboard/configuracao/js/configuracao.js"></script>
+    <script src="/utilitarios/button-effects.js"></script>
   </body>
 </html>

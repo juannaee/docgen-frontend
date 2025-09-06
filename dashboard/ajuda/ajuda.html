@@ -8,56 +8,65 @@
     <link rel="stylesheet" href="/utilitarios/buttons.css" />
   </head>
   <body>
-    <div class="container">
+  <div class="container">
+    <div class="header-help">
       <h1>Central de Ajuda</h1>
+      <div class="searchbar">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor"/></svg>
+        <input id="searchInput" type="search" placeholder="Busque por palavras-chave…">
+      </div>
+    </div>
+    <p class="subtitle">Encontre respostas rápidas para as dúvidas mais comuns.</p>
 
-      <div class="faq-section">
-        <div class="faq-item">
-          <button class="faq-question">Como faço login?</button>
-          <div class="faq-answer">
-            Insira seu e-mail e senha cadastrados. Se for seu primeiro acesso ou
-            a senha tiver sido resetada pelo administrador, use seu e-mail como
-            senha inicial.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            O que fazer se minha senha foi resetada?
-          </button>
-          <div class="faq-answer">
-            Você será redirecionado automaticamente para criar uma nova senha
-            após o login com a senha inicial (seu e-mail).
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Estou vendo uma mensagem de erro. E agora?
-          </button>
-          <div class="faq-answer">
-            Verifique sua conexão com a internet. Se o erro persistir, entre em
-            contato com o suporte.
-          </div>
+    <div class="faq-section">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="q-left"><span class="badge">Login</span> Como faço login?</span>
+          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          Insira seu e-mail e senha cadastrados. Se for seu primeiro acesso ou a senha tiver sido resetada pelo administrador, use seu e-mail como senha inicial.
         </div>
       </div>
 
-      <button class="btn" id="btnBack">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          viewBox="0 0 24 24"
-        >
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-      </button>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="q-left"><span class="badge">Senha</span> O que fazer se minha senha foi resetada?</span>
+          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          Você será redirecionado automaticamente para criar uma nova senha após o login com a senha inicial (seu e-mail).
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="q-left"><span class="badge">Erros</span> Estou vendo uma mensagem de erro. E agora?</span>
+          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          Verifique sua conexão com a internet. Se o erro persistir, entre em contato com o suporte.
+        </div>
+      </div>
     </div>
 
-    <script src="/dashboard/ajuda/js/ajuda.js"></script>
-    <script src="/utilitarios/button-effects.js"></script>
-  </body>
+    <div id="emptyState" class="empty hidden">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 7l9-5 9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5"/>
+      </svg>
+      <p>Nenhum resultado para sua busca.</p>
+    </div>
+
+    <button class="btn" id="btnBack" title="Voltar">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>
+    </button>
+  </div>
+
+  <script src="/dashboard/ajuda/js/ajuda.js"></script>
+  <script src="/utilitarios/button-effects.js"></script>
+</body>
+
 </html>

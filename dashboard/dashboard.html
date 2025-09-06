@@ -1,42 +1,160 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="/dashboard/css/dashboard.css" />
-</head>
-<body>
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h2>Painel</h2>
-      </div>
-      <nav class="menu">
-        <a href="#" class="menu-item">🏠 Início</a>
-        <a href="/dashboard/perfil/perfil.html" class="menu-item">👤 Perfil</a>
-        <a href="/dashboard/configuracao/configuracao.html" class="menu-item" id="settingsLink">⚙️ Configurações</a>
-        <a href="#" class="menu-item">📄 Documentos</a>
-        <a href="/dashboard/ajuda/ajuda.html" class="menu-item">❓ Ajuda</a>
-        <button id="logoutBtn" class="menu-item logout">🚪 Sair</button>
-      </nav>
-    </aside>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/dashboard/css/dashboard.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">DG</div>
+          <h2>Painel</h2>
+        </div>
 
-    <main class="main">
-      <header class="main-header">
-        <h1>Bem-vindo(a), <span id="username">carregando...</span></h1>
-        <p class="subtitle">Acesse as funcionalidades do sistema no menu lateral.</p>
-      </header>
+        <div class="user-chip" title="Conta">
+          <div class="avatar" aria-hidden="true">A</div>
+          <div class="meta">
+            <span class="name" data-username>Carregando…</span>
+            <span class="role" id="roleBadge">Usuário</span>
+          </div>
+        </div>
 
-      <section class="dashboard-actions">
-        <div class="card">📄 <span>Documentos</span></div>
-        <div class="card" onclick="location.href='/dashboard/configuracao/configuracao.html'"> ⚙️<span>Configurações</span></div>
-        <div class="card" onclick="location.href='/dashboard/perfil/perfil.html'">👤 <span>Perfil</span></div>
-        <div class="card" onclick="location.href='/dashboard/ajuda/ajuda.html'">❓ <span>Ajuda</span></div>
-      </section>
-    </main>
-  </div>
+        <nav class="menu">
+          <a href="/dashboard/dashboard.html" class="menu-item" aria-current="page">
+            <!-- Home -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="none" stroke="currentColor" stroke-width="2"
+                d="M3 10.5 12 4l9 6.5V20a1 1 0 0 1-1 1h-4v-6H8v6H4a1 1 0 0 1-1-1z"/>
+            </svg>
+            <span>Início</span>
+          </a>
 
-  <script src="/dashboard/js/dashboard.js"></script>
-</body>
+          <a href="/dashboard/perfil/perfil.html" class="menu-item">
+            <!-- User -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M4 20a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span>Perfil</span>
+          </a>
+
+          <a href="/dashboard/configuracao/configuracao.html" class="menu-item" id="settingsLink">
+            <!-- Settings (sliders clean) -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <!-- três sliders verticais minimalistas -->
+              <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <!-- slider 1 -->
+                <line x1="6"  y1="4"  x2="6"  y2="20"></line>
+                <circle cx="6" cy="10" r="2"></circle>
+                <!-- slider 2 -->
+                <line x1="12" y1="4"  x2="12" y2="20"></line>
+                <circle cx="12" cy="14" r="2"></circle>
+                <!-- slider 3 -->
+                <line x1="18" y1="4"  x2="18" y2="20"></line>
+                <circle cx="18" cy="8" r="2"></circle>
+              </g>
+            </svg>
+            <span>Configurações</span>
+          </a>
+
+          <a href="/dashboard/ajuda/ajuda.html" class="menu-item">
+            <!-- Help -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M9.1 9a3 3 0 1 1 4.8 2.4c-.7.5-1.4 1-1.6 1.9v.2" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="17" r="1"/>
+            </svg>
+            <span>Ajuda</span>
+          </a>
+
+          <button id="logoutBtn" class="menu-item logout" type="button">
+            <!-- Logout -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="none" stroke="currentColor" stroke-width="2"
+                d="M15 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8"/>
+              <path d="M10 17l5-5-5-5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M15 12H3" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span>Sair</span>
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Main -->
+      <main class="main">
+        <header class="main-header">
+          <h1>Bem-vindo(a), <span data-username>Carregando…</span></h1>
+          <p class="subtitle">Acesse as funcionalidades do sistema no menu lateral.</p>
+        </header>
+
+        <section class="dashboard-actions">
+          <div class="card" onclick="location.href='/dashboard/documentos/lista.html'">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="6" y="4" width="12" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 8h8M8 12h8M8 16h5" fill="none" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <div>
+              <div class="label">Documentos</div>
+              <div class="desc">Envie, veja e baixe</div>
+            </div>
+          </div>
+
+          <div class="card" id="configCard" onclick="location.href='/dashboard/configuracao/configuracao.html'">
+            <div class="icon">
+              <!-- Settings (sliders clean) -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <line x1="6"  y1="4"  x2="6"  y2="20"></line>
+                  <circle cx="6"  cy="10" r="2"></circle>
+                  <line x1="12" y1="4"  x2="12" y2="20"></line>
+                  <circle cx="12" cy="14" r="2"></circle>
+                  <line x1="18" y1="4"  x2="18" y2="20"></line>
+                  <circle cx="18" cy="8"  r="2"></circle>
+                </g>
+              </svg>
+            </div>
+            <div>
+              <div class="label">Configurações</div>
+              <div class="desc">Gerencie usuários e regras</div>
+            </div>
+          </div>
+
+          <div class="card" onclick="location.href='/dashboard/perfil/perfil.html'">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M4 20a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </div>
+            <div>
+              <div class="label">Perfil</div>
+              <div class="desc">Atualize seus dados</div>
+            </div>
+          </div>
+
+          <div class="card" onclick="location.href='/dashboard/ajuda/ajuda.html'">
+            <div class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M9.1 9a3 3 0 1 1 4.8 2.4c-.7.5-1.4 1-1.6 1.9v.2" fill="none" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="17" r="1"/>
+              </svg>
+            </div>
+            <div>
+              <div class="label">Ajuda</div>
+              <div class="desc">Perguntas frequentes</div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/dashboard/js/dashboard.js"></script>
+  </body>
 </html>
